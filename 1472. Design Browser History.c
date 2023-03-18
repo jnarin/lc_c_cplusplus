@@ -36,6 +36,7 @@ void browserHistoryVisit(BrowserHistory* obj, char * url) {
     assert(obj);
     assert(url);
     assert(url[0]);
+    assert(obj->curr < MAX_DEPTH);
     
     strncpy(obj->url[obj->curr], url, MAX_URL_LEN);
 
