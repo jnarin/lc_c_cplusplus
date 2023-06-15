@@ -17,11 +17,13 @@ Problem: 1161. Maximum Level Sum of a Binary Tree
 class Solution {
 public:
     int maxLevelSum(TreeNode* root) {
-        
-        assert(root);
-        int depth = getDepth(root), i, level = 1;
+        int i, level = 1;
         unordered_map<int, int> m;
         queue<TreeNode *> q;
+        
+        if (root == nullptr){
+            return -1;
+        }
         
         q.push(root);
         while (q.size()){
@@ -29,8 +31,6 @@ public:
             for (i = 0; i < s; i++){
                 TreeNode *t = q.front();
                 q.pop();
-                
-                assert(t);
                 
                 sum += t->val;
                 if (t->right){
@@ -55,9 +55,6 @@ public:
         }
         
         return m[i];
-    }
-private:
-    int getDepth(TreeNode *root){
-        return root ? 1 + max(getDepth(root->left), getDepth(root->right)) : 0;
+        
     }
 };
