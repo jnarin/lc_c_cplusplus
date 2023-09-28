@@ -9,6 +9,10 @@ Problem: 905. Sort Array By Parity
 static int odd_even_cmp(const void *a, const void *b){
     int x = *(int *)a, y = *(int *)b;
     
+    if (x == y || ((x & 1) == (y & 1))){
+        return 0;
+    }
+    
     if (x & 1){
         return 1;
     }
@@ -17,7 +21,7 @@ static int odd_even_cmp(const void *a, const void *b){
         return -1;
     }
     
-    return x < y ? -1 : 1;
+    return 0;
 }
 
 int* sortArrayByParity(int* nums, int numsSize, int* returnSize){
