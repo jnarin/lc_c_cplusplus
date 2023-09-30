@@ -5,15 +5,14 @@
 bool kLengthApart(int* nums, int numsSize, int k){
     int i = 0, p = -1;
 
-    while (i < numsSize){
+    for (i = 0; i < numsSize; i++){
         if (nums[i] != 0){
             p = i;
-            i++;
             break;
         }
-
-        i++;
     }
+
+    i++;
 
     for (; i < numsSize; i++){
         if (nums[i] != 1){
