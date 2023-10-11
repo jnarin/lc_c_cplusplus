@@ -47,7 +47,8 @@ static void removeDuplicates(int *nums, int numsSize, int *returnSize){
 /* Returns index of the first element greater than target, 
 numsSize otherwise */
 static int upperBound(int *nums, int numsSize, int target){
-	/* Implemented binary search instead - array is sorted - duh! */
+    /* Implemented binary search instead of sequential search 
+    since array is sorted - duh! */
     int l = 0, r = numsSize - 1, m;
     
     while (l < r){
