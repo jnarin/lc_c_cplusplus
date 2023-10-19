@@ -1,10 +1,12 @@
 /*
-Problem: https://leetcode.com/problems/backspace-string-compare/
-Link: 844. Backspace String Compare
+Link: https://leetcode.com/problems/backspace-string-compare/
+Problem: 844. Backspace String Compare
 */
 
 #define CHECK_SKIP_CHAR(c) (((c) == '#') || ((c) == '*'))
 
+/* Simulate backspace character '#' and replace the deleted character
+with '+' */
 static void parseBS(char *s){
     int sLen = strlen(s), i = sLen - 1, x;
     
@@ -24,6 +26,8 @@ static void parseBS(char *s){
     }
 }
 
+/* Check if input strings are same, but ignore any differences where '#' or '+' 
+characters are present */
 static bool compareBS(char * s, char * t){
     int sLen = strlen(s), tLen = strlen(t);
     int i, j, a, b;
