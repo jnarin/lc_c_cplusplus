@@ -3,6 +3,12 @@ Link: https://leetcode.com/problems/binary-search/
 Problem: 704. Binary Search
 */
 
+/*
+ * References:
+ * 1. https://johnnysswlab.com/unexpected-ways-memory-subsystem-interacts-with-branch-prediction/
+ * 2. https://github.com/ibogosavljevic/johnysswlab/blob/master/2023-12-branches-memory/binary_search.cpp
+*/
+
 #define MIDVAL(a, b) (((a) & (b)) + (((a) ^ (b)) >> 1))
 
 int search(int* nums, int numsSize, int target){
