@@ -1,7 +1,8 @@
 /*
-Link: https://leetcode.com/problems/sum-of-square-numbers/
 Problem: 633. Sum of Square Numbers
+Link: https://leetcode.com/problems/sum-of-square-numbers/
 */
+
 bool judgeSquareSum(int c){
     unsigned int a, b, t;
     
