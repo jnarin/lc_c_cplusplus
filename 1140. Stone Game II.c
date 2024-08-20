@@ -14,7 +14,7 @@ Problem: 1140. Stone Game II
     _a > _b ? _a : _b; })
 
 
-static int solve(int i, int j, int *piles, int pilesSize, int **dp, int *suffixSum){
+static int solve(int i, int j, int *piles, int pilesSize, int dp[pilesSize][pilesSize], int *suffixSum){
     if (i + (j << 1) >= pilesSize){
         return suffixSum[i];
     }
@@ -36,28 +36,15 @@ static int solve(int i, int j, int *piles, int pilesSize, int **dp, int *suffixS
 }
 
 int stoneGameII(int* piles, int pilesSize){
-    int **dp, suffixSum[pilesSize], i;
+    int dp[pilesSize][pilesSize], suffixSum[pilesSize], i;
     
-    dp = calloc(sizeof(int *), pilesSize);
-    for (i = 0; i < pilesSize; i++){
-        dp[i] = calloc(sizeof(int), pilesSize);
-    }
-    
+    memset(dp, 0, sizeof(dp));
     memcpy(suffixSum, piles, sizeof(suffixSum));
     
     for (i = pilesSize - 2; i >= 0; i--){
         suffixSum[i] += suffixSum[i + 1];
     }
     
-    int ans = solve(0, 1, piles, pilesSize, dp, suffixSum);
-    
-    for (i = 0; i < pilesSize; i++){
-        free(dp[i]);
-    }
-    
-    free(dp);
-    
-    return ans;
-
+    return solve(0, 1, piles, pilesSize, dp, suffixSum);
 }
 
