@@ -3,7 +3,6 @@ Problem: 3217. Delete Nodes From Linked List Present in Array
 Link: https://leetcode.com/problems/delete-nodes-from-linked-list-present-in-array/
 */
 
-
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -25,13 +24,12 @@ struct ListNode* modifiedList(int* nums, int numsSize, struct ListNode* head) {
 
     while(current) {
         if(set[current->val]) {
+            temp = current;
+            current = current->next;
+
             if(prev == NULL) {
-                temp = current;
-                current = current->next;
                 head = current;
             } else {
-                temp = current;
-                current = current->next;
                 prev->next = current;
             }
             
