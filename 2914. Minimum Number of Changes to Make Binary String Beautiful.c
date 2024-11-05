@@ -4,10 +4,11 @@ Link: https://leetcode.com/problems/minimum-number-of-changes-to-make-binary-str
 */
 
 int minChanges(char* s) {
-    int ans = 0, len = strlen(s), i;
+    int ans = 0;
     
-    for (i = 0; i + 1 < len; i += 2) {
-        ans += s[i] == s[i + 1] ? 0 : 1;
+    while (*s && *(s + 1)) {
+        ans += *s == *(s + 1) ? 0 : 1;
+        s += 2;
     }
     
     return ans;
