@@ -29,11 +29,9 @@ static long long sum(int *nums, int numsSize) {
 
 long long pickGifts(int* gifts, int giftsSize, int k) {
     int i = 0, maxIdx;
-    long long taken = 0;
     
     while (k) {
         maxIdx = findMaxIdx(gifts, giftsSize);
-        taken += gifts[maxIdx];
         gifts[maxIdx] = sqrt(gifts[maxIdx]);
         
         k--;
