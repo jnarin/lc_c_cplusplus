@@ -13,9 +13,6 @@ int minimumLength(char* s) {
 
     for (i = 0; i < 26; i++) {
         map[i] = map[i] > 2 ? ((map[i] & 1) ? 1 : 2) : map[i];
-    }
-
-    for (i = 0; i < 26; i++) {
         ans += map[i];
     }
 
