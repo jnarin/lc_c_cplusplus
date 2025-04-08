@@ -48,16 +48,19 @@ static int hashsetContains(HashSet *set, int key) {
 int minimumOperations(int* nums, int numsSize) {
     HashSet *set = hashsetCreate(MAX_NUM);
     int i;
+    int ans = 0;
 
     for (i = numsSize - 1; i >= 0; i--) {
         if (hashsetContains(set, nums[i])) {
-            return i / 3 + 1;
+            ans = i / 3 + 1;
+            break;
         }
 
         hashsetAdd(set, nums[i]);
     }
    
     hashsetFree(set);
-    return 0;
+    
+    return ans;
 
 }
