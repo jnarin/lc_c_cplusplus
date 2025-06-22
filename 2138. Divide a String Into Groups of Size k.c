@@ -13,8 +13,9 @@ char** divideString(char* s, int k, char fill, int* returnSize) {
     ans = calloc(ansLen, sizeof(char *));
     for (i = 0; i < ansLen; i++) {
         ans[i] = calloc(k + 1, sizeof(char));
-        memset(ans[i], fill, k);
     }
+
+    memset(ans[ansLen - 1], fill, k);
 
     for (i = 0, j = 0; i < ansLen; i++) {
         memcpy(ans[i], &s[j], (j + k < len) ? k : len - j);
