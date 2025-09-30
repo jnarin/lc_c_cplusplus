@@ -16,7 +16,7 @@ int triangularSum(int* nums, int numsSize) {
     }
     
     for (i = 1; i < numsSize; i++) {
-        for (int k = i; k >= 1; k--) {
+        for (k = i; k >= 1; k--) {
             dp[k] = (dp[k] + dp[k-1]) % 10;
         }
     }
