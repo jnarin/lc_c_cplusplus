@@ -3,38 +3,37 @@ Problem: 2872. Maximum Number of K-Divisible Components
 Link: https://leetcode.com/problems/maximum-number-of-k-divisible-components/
 */
 
+typedef struct Node {
+    int neighbor;
+    struct Node* next;
+} Node;
+
+typedef struct {
+    int node;
+    int parent;
+    int phase;
+} StackItem;
+
 int maxKDivisibleComponents(int n, int** edges, int edgesSize, int* edgesColSize, int* values, int valuesSize, int k) {
     int ans = 0, i;
-
-    typedef struct Node {
-        int neighbor;
-        struct Node* next;
-    } Node;
-    
-    Node** adjList = calloc(n, sizeof(Node*));
+    Node **adjList = calloc(n, sizeof(Node *));
     
     for (i = 0; i < edgesSize; i++) {
         int u = edges[i][0], v = edges[i][1];
         
-        Node* newNode = malloc(sizeof(Node));
+        Node *newNode = calloc(1, sizeof(Node));
         newNode->neighbor = v;
         newNode->next = adjList[u];
         adjList[u] = newNode;
         
-        newNode = malloc(sizeof(Node));
+        newNode = calloc(1, sizeof(Node));
         newNode->neighbor = u;
         newNode->next = adjList[v];
         adjList[v] = newNode;
     }
-
-    typedef struct {
-        int node;
-        int parent;
-        int phase;
-    } StackItem;
     
-    StackItem* stack = malloc(n * 2 * sizeof(StackItem));
-    long long* sums = calloc(n, sizeof(long long));
+    StackItem *stack = calloc(n * 2, sizeof(StackItem));
+    long long *sums = calloc(n, sizeof(long long));
     int stackTop = 0;
     
     stack[stackTop++] = (StackItem){0, -1, 0};
@@ -50,7 +49,7 @@ int maxKDivisibleComponents(int n, int** edges, int edgesSize, int* edgesColSize
             
             stack[stackTop++] = (StackItem){node, parent, 1};
             
-            Node* neighbor = adjList[node];
+            Node *neighbor = adjList[node];
             while (neighbor) {
                 if (neighbor->neighbor != parent) {
                     stack[stackTop++] = (StackItem){neighbor->neighbor, node, 0};
@@ -58,7 +57,7 @@ int maxKDivisibleComponents(int n, int** edges, int edgesSize, int* edgesColSize
                 neighbor = neighbor->next;
             }
         } else {
-            Node* neighbor = adjList[node];
+            Node *neighbor = adjList[node];
             while (neighbor) {
                 if (neighbor->neighbor != parent) {
                     sums[node] += sums[neighbor->neighbor];
@@ -74,13 +73,14 @@ int maxKDivisibleComponents(int n, int** edges, int edgesSize, int* edgesColSize
     free(sums);
 
     for (i = 0; i < n; i++) {
-        Node* current = adjList[i];
+        Node *current = adjList[i], *temp;
         while (current) {
-            Node* temp = current;
+            temp = current;
             current = current->next;
             free(temp);
         }
     }
+    
     free(adjList);
 
     return ans;
