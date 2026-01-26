@@ -23,10 +23,6 @@ int** minimumAbsDifference(int* arr, int arrSize, int* returnSize, int** returnC
         (*returnColumnSizes)[i] = 2;
     }
 
-    if (arrSize < 2) {
-        return ans;
-    }
-
     qsort(arr, arrSize, sizeof(int), incrCmp);
 
     int minDiff = INT_MAX;
