@@ -8,15 +8,9 @@ Link: https://leetcode.com/problems/minimum-distance-to-the-target-element/
 int getMinDistance(int* nums, int numsSize, int target, int start) {
     int i, ans = numsSize;
 
-    for (i = start; i < numsSize; i++) {
+    for (i = 0; i < numsSize; i++) {
         if (nums[i] == target) {
-            ans = MINVAL(ans, i - start);
-        }
-    }
-
-    for (i = start; i >= 0; i--) {
-        if (nums[i] == target) {
-            ans = MINVAL(ans, start - i);;
+            ans = MINVAL(ans, abs(i - start));
         }
     }
 
